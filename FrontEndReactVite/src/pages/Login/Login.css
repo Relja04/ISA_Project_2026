@@ -1,0 +1,84 @@
+.loginContainer {
+    height: 100vh;
+    width: 100vw;
+
+    background-color: #2596be;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer h1{
+    margin: 0 auto;
+    color: #838383;
+    font-weight: normal;
+}
+
+.loginContainer form {
+    height: 90%;
+    width: 50em;
+    background-color: white;
+    border-radius: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.loginContainer input:not([type="checkbox"]) {
+    width: 80%;
+    height: 4em;
+    display: block;
+    margin: 0 auto;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 15px;
+    outline: none;
+    transition: 0.3s;
+}
+.loginContainer input:not([type="checkbox"]):focus {
+    width: 83%;
+}
+.loginContainer label:not([for="showPassword"]) {
+    position: relative;
+    left: 3em;
+    top: 20px;
+    font-size: 1.3em;
+}
+.loginContainer #showPassword{
+    display: block;
+    width: 1.2em;
+    height: 1.2em;
+    position: relative;
+    top:-6.5em;
+    left: 4.7em;
+}
+.loginContainer label[for="showPassword"] {
+    position: relative;
+    top:-1.5em;
+    left: 6em;
+}
+.loginContainer button{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #2596be;
+    border: none;
+    height: 3.5em;
+    padding: 0 1em;
+    color: white;
+    transition: 0.3s;
+    font-size: 1.5em;
+}
+.loginContainer button:hover{
+    width: 82%;
+    background-color: #228db4;
+}
+.loginContainer p{
+    margin: 0 auto;
+}
+.loginContainer a:link, a:visited {
+  color: blue;
+}
+.loginContainer input[type="password"]::-ms-reveal,
+.loginContainer input[type="password"]::-ms-clear {
+    display: none;
+}
