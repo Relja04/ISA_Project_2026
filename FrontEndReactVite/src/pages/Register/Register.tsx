@@ -1,30 +1,40 @@
 import "./Register.css"
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthService } from "../../services/AuthService";
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { AuthService } from "../../services/AuthService"
 export default function Register() {
     const [username, setUsername] = useState('')
-    const [email,setEmail]=useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConf, setPasswordConf] = useState('')
-    const [error,setError]=useState('')
-    const [message,setMessage]=useState('')
+    const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
 
-    //const [error, setError] = useState('')
+    const [showToast, setShowToast] = useState(false)
     const [passwordShown, setPasswordShown] = useState(false)
 
     const toggle = () => {
         setPasswordShown(!passwordShown)
     }
 
-    const handleRegister=async(e:React.SubmitEvent)=>{
+    const handleRegister = async (e: React.SubmitEvent) => {
         e.preventDefault()
-        if(password!==passwordConf){
+        if (password !== passwordConf) {
             setError("Passwords do not match!")
             return
         }
-        const response=AuthService.register(username,email,password)
-        setMessage((await response).data)
+        try {
+            const response=AuthService.register(username,email,password)
+            setMessage((await response).data)
+            setMessage("Success")
+
+            setShowToast(true)
+            setTimeout(() => {
+                setShowToast(false)
+            }, 7000)
+        } catch (err) {
+            setError("Registration failed. Please try again.")
+        }
     }
 
     return (
@@ -46,6 +56,11 @@ export default function Register() {
                 <button type="submit">Register</button>
                 <p>Already have an account? <Link to="/Login"> Sign in</Link></p>
             </form>
+            {showToast && (
+                <div className="glide-toast">
+                    {message}
+                </div>
+            )}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 package rs.ac.singidunum.isa.projekat.services;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.http.HttpStatus;
@@ -69,6 +70,19 @@ public class UserService {
             return new ResponseEntity<>(new ApiError("Username already exists", HttpStatus.BAD_REQUEST.value()),HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ApiError("Couldnt connect",HttpStatus.INTERNAL_SERVER_ERROR.value()),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .verifyWith(signingKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claims.getExpiration().after(new Date());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private String generateRealJwt(String username, String role) {

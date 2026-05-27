@@ -1,26 +1,28 @@
 import './App.css'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Home from "./pages/Homepage/Homepage"
+import { redirect } from "react-router";
 
-function Home() {
-    return <h1>Hello World</h1>
-}
 
 function App() {
+    redirect("/home")
     return (
         <>
-                <Link to="/">Home</Link>
+                <Link to="/home">Home</Link>
                 {" | "}
                 <Link to="/login">Login</Link>
                 {" | "}
                 <Link to="/register">Register</Link>
 
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Navigate to="/home" replace />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
+            
         </>
     )
 }

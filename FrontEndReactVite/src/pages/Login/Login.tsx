@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AuthService } from "../../services/AuthService";
 import { type UserModel } from "../../model/UserModel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css"
 import axios from "axios";
 
@@ -10,6 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [passwordShown, setPasswordShown] = useState(false)
+    const navigate=useNavigate()
 
     const toggle = () => {
         setPasswordShown(!passwordShown)
@@ -22,6 +23,7 @@ export default function Login() {
             const response = await AuthService.login(username, password)
             const data: UserModel = response.data
             setStorage(String(data.userId), data.username, data.role, data.token)
+            navigate("/")
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (!error.response) {

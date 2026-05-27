@@ -1,0 +1,12 @@
+.navigation_list{
+    list-style-type:none;
+    display: flex;
+    justify-content: flex-end;
+    padding:0px;
+    background-color: #023047;
+}
+.navigation_list li{
+    padding: 0.2em 1em;
+    font-size: 1.5em;
+    color: white;
+}

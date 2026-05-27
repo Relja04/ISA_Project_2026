@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
 
-    background-color: #2596be;
+    background-color: #219ebc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,3 +82,36 @@
 .registerContainer input[type="password"]::-ms-clear {
     display: none;
 }   
+.glide-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    
+    animation: glideInOut 5s ease-in-out forwards;
+}
+
+@keyframes glideInOut {
+    0% {
+        bottom: -100px;
+    }
+    15% {
+        bottom: 30px;
+    }
+    75% {
+        bottom: 30px;
+    }
+    100% {
+        bottom: -100px;
+    }
+}
