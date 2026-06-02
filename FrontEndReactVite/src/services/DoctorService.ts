@@ -26,7 +26,13 @@ export class DoctorService {
     static async findDoctor(practice:string) {
         return doctor.post("doctors", {  practice })
     }
+    static async findDoctorsByDate(practice:string, date:string){
+        return doctor.post("doctorsDate",{practice, date})
+    }
     static async bookDoctor(id:number){
         return doctor.post("doctors/book",{id})
+    }
+    static async getPractice(){
+        return doctor.get("doctors/practice")
     }
 }

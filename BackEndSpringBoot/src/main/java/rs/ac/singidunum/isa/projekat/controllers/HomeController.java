@@ -3,12 +3,8 @@ package rs.ac.singidunum.isa.projekat.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.singidunum.isa.projekat.dto.DoctorRequest;
-import rs.ac.singidunum.isa.projekat.dto.DoctorResponse;
-import rs.ac.singidunum.isa.projekat.entities.Doctor;
+import rs.ac.singidunum.isa.projekat.dto.request.DoctorRequest;
 import rs.ac.singidunum.isa.projekat.services.DoctorService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/home")
@@ -24,5 +20,15 @@ public class HomeController {
     @PostMapping("/doctors")
     public ResponseEntity<?> findDoctors(@RequestBody DoctorRequest doctorRequest, HttpServletRequest request) {
         return doctorService.findDoctors(doctorRequest, request);
+    }
+
+    @PostMapping("/doctorsDate")
+    public ResponseEntity<?> findDoctorsByDate(@RequestBody DoctorRequest doctorRequest, HttpServletRequest request) {
+        return doctorService.findDoctorByDate(doctorRequest, request);
+    }
+
+    @GetMapping("/doctors/practice")
+    public ResponseEntity<?> getPractice() {
+        return doctorService.getPractice();
     }
 }

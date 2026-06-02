@@ -1,4 +1,4 @@
-package rs.ac.singidunum.isa.projekat.dto;
+package rs.ac.singidunum.isa.projekat.dto.request;
 
 public class LoginRequest {
     private String username;

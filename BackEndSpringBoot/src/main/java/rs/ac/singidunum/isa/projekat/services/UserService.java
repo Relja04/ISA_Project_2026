@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import rs.ac.singidunum.isa.projekat.dto.ApiError;
-import rs.ac.singidunum.isa.projekat.dto.LoginRequest;
-import rs.ac.singidunum.isa.projekat.dto.LoginResponse;
-import rs.ac.singidunum.isa.projekat.dto.RegisterRequest;
+import rs.ac.singidunum.isa.projekat.dto.request.LoginRequest;
+import rs.ac.singidunum.isa.projekat.dto.request.RegisterRequest;
+import rs.ac.singidunum.isa.projekat.dto.response.ApiError;
+import rs.ac.singidunum.isa.projekat.dto.response.LoginResponse;
 import rs.ac.singidunum.isa.projekat.entities.Role;
 import rs.ac.singidunum.isa.projekat.entities.User;
 import rs.ac.singidunum.isa.projekat.repositories.RoleRepositoryInterface;
@@ -66,10 +66,10 @@ public class UserService {
             userRepository.save(newUser);
 
             return new ResponseEntity<>("User registered successfully! Please login", HttpStatus.CREATED);
-        }else if(userRepository.findByUsername(request.getUsername()).isPresent()){
-            return new ResponseEntity<>(new ApiError("Username already exists", HttpStatus.BAD_REQUEST.value()),HttpStatus.BAD_REQUEST);
+        } else if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+            return new ResponseEntity<>(new ApiError("Username already exists", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ApiError("Couldnt connect",HttpStatus.INTERNAL_SERVER_ERROR.value()),HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ApiError("Couldn't connect", HttpStatus.INTERNAL_SERVER_ERROR.value()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     public boolean isTokenValid(String token) {

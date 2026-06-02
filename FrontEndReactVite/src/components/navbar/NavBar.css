@@ -1,11 +1,15 @@
-.navigation_list{
-    list-style-type:none;
+.navigation_list {
+    list-style-type: none;
     display: flex;
     justify-content: flex-end;
-    padding:0px;
-    background-color: #023047;
+    padding: 0px;
+    background: #171717;
+    background: linear-gradient(90deg, rgba(23, 23, 23, 1) 0%, rgba(50, 149, 199, 1) 51%, rgba(0, 119, 143, 1) 100%);
+    height: 4.5em;
+    align-items: center;
 }
-.navigation_list li{
+
+.navigation_list li {
     padding: 0.2em 1em;
     font-size: 1.5em;
     color: white;

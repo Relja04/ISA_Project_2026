@@ -2,8 +2,8 @@ package rs.ac.singidunum.isa.projekat.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.singidunum.isa.projekat.dto.LoginRequest;
-import rs.ac.singidunum.isa.projekat.dto.RegisterRequest;
+import rs.ac.singidunum.isa.projekat.dto.request.LoginRequest;
+import rs.ac.singidunum.isa.projekat.dto.request.RegisterRequest;
 import rs.ac.singidunum.isa.projekat.services.UserService;
 
 

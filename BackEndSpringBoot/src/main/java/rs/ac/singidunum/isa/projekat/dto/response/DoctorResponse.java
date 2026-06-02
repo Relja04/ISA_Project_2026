@@ -1,4 +1,4 @@
-package rs.ac.singidunum.isa.projekat.dto;
+package rs.ac.singidunum.isa.projekat.dto.response;
 
 import java.time.OffsetDateTime;
 

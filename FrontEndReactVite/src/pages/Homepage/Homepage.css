@@ -1,44 +1,132 @@
 .main {
-    height: 94vh;
-    width: 100vw;
+    height: 92vh;
+    width: calc(100vw);
     position: relative;
+    background-color: #ebebeb;
+    float: right;
+    transition: 0.5s ease-in-out;
 }
 
-.divs {
-    width: 30em;
-    height: 20em;
-    background-color: #8ecae6;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
+.main.sidebar-active {
+    width: calc(100vw - 300px);
 }
 
-.images {
-    display: block;
-    margin: 0 auto;
-    width: 288px;
-    height: 175px;
-    border-radius: 30px;
-    -webkit-box-shadow: 0px 10px 13px -7px #000000, 14px 13px 20px 5px rgba(0, 0, 0, 0.35);
-    box-shadow: 0px 10px 13px -7px #000000, 14px 13px 20px 5px rgba(0, 0, 0, 0.35);
+@property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: false;
 }
 
-.buttons {
-    margin-top: 20px;
-    background-color: #FB8500;
+.mainContainer {
+    border-bottom: 2px solid black;
+    height: 22em;
+    justify-content: space-between;
+    --gradient-angle: 90deg;
+    background: #171717;
+    background: linear-gradient(var(--gradient-angle), rgba(23, 23, 23, 1) 0%, rgba(50, 149, 199, 1) 51%, rgba(0, 119, 143, 1) 100%);
+
+    transition: --gradient-angle 0.5s ease-in-out;
+}
+
+.main.sidebar-active .mainContainer {
+    --gradient-angle: 50deg;
+}
+
+.mainContainerContent {
+    display: inline-block;
+    margin-left: 300px;
+    margin-top: 30px;
+    width: 550px;
+}
+
+.mainContainerContent h1 {
+    font-size: 4em;
+}
+
+.mainContainerContent p {
+    font-size: 1.2em;
+}
+
+.book {
     border: none;
-    width: 20em;
-    height: 3em;
+    outline: none;
+    background-color: #fb8500;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 1.3em;
     color: white;
-    font-size: 1em;
-    font-weight: 700;
-    border-radius: 5px;
-    transition: .3s;
+    font-weight: 500;
+    margin-top: 25px;
+    transition: .4s;
 }
 
-.buttons:hover {
-    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.58);
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.58);
+.learn {
+    border: none;
+    outline: none;
+    background-color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 1.3em;
+    color: black;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: .4s;
+}
+
+.book:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.learn:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.imageContainer {
+    height: 100%;
+    display: flex;
+    float: right;
+}
+
+.reviews {
+    height: 420px;
+    width: 1000px;
+    border: solid 1px black;
+    margin: 50px auto;
+    text-align: center;
+    line-height: 1.6em;
+    padding-right: 10px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: smoothReveal 0.6s ease-out forwards;
+}
+
+.reviews img {
+    height: 100%;
+    width: 300px;
+    float: left;
+}
+
+.reviews h1 {
+    margin-top: 10px;
+}
+
+.stars {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+
+@keyframes smoothReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 .overlay {
@@ -54,6 +142,7 @@
     animation: fadeIn 0.3s ease;
     overflow: hidden;
 }
+
 .detail {
     background: white;
     padding: 20px;
@@ -66,44 +155,52 @@
     max-height: 40em;
     overflow: scroll;
 }
-.detail header{
+
+.detail header {
     display: flex;
     justify-content: space-between;
     border-bottom: #999 1.5px solid;
     padding-bottom: 5px;
     align-items: center;
 }
-.detail .calendar{
+
+.detail .calendar {
     background-color: #0080ff;
     padding: 10px;
     color: white;
-    font-family: "Robot Mono",monospace;
+    font-family: "Robot Mono", monospace;
     font-size: 18px;
     border: none;
     outline: none;
     border-radius: 5px;
 }
-::-webkit-calendar-picker-indicator{
+
+::-webkit-calendar-picker-indicator {
     background-color: white;
     padding: 5px;
     cursor: pointer;
     border-radius: 3px;
 }
 
-table,tbody,thead{
+table,
+tbody,
+thead {
     display: block;
 }
-thead{
+
+thead {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-table tr{
+
+table tr {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     font-size: 1.2em;
-    border-bottom: #666 2px solid;   
+    border-bottom: #666 2px solid;
 }
-td{
+
+td {
     padding: 4px;
 }
 
