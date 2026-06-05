@@ -44,5 +44,15 @@ public class DoctorAvailabilitySlot {
     @Column(name = "created_at")
     private OffsetDateTime createdAt;
 
-
+    @Override
+    public String toString() {
+        return "DoctorAvailabilitySlot{" +
+                "id=" + id +
+                ", doctor=" + doctor +
+                ", slotStart=" + slotStart +
+                ", slotEnd=" + slotEnd +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

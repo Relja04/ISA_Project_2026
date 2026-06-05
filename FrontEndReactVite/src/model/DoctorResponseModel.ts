@@ -1,5 +1,6 @@
 export interface DoctorResponseModel{
     id:number
+    appointmentId:number
     name:string
     lastName:string
     practice:string

@@ -29,8 +29,8 @@ export class DoctorService {
     static async findDoctorsByDate(practice:string, date:string){
         return doctor.post("doctorsDate",{practice, date})
     }
-    static async bookDoctor(id:number){
-        return doctor.post("doctors/book",{id})
+    static async bookDoctor(dasId:number,userId:number){
+        return doctor.post("doctors/book",{dasId,userId})
     }
     static async getPractice(){
         return doctor.get("doctors/practice")

@@ -3,6 +3,7 @@ package rs.ac.singidunum.isa.projekat.dto.response;
 import java.time.OffsetDateTime;
 
 public class DoctorResponse {
+    private int appointmentId;
     private int id;
     private String name;
     private String lastName;
@@ -11,14 +12,23 @@ public class DoctorResponse {
     private OffsetDateTime end;
     private String status;
 
-    public DoctorResponse(int id, String name, String lastName, String practice, OffsetDateTime start, OffsetDateTime end, String status) {
+    public DoctorResponse(int appointmentId, int id, String name,String lastName, String practice, OffsetDateTime start, OffsetDateTime end, String status) {
+        this.appointmentId = appointmentId;
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
         this.practice = practice;
         this.start = start;
         this.end = end;
         this.status = status;
+        this.lastName = lastName;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public int getId() {
@@ -75,5 +85,19 @@ public class DoctorResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "DoctorResponse{" +
+                "appointmentId=" + appointmentId +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", practice='" + practice + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

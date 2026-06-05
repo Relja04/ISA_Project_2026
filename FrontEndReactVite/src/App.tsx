@@ -6,6 +6,7 @@ import Home from "./pages/Homepage/Homepage"
 import Booking from "./pages/Booking/Booking"
 import { redirect } from "react-router";
 import NotFound from './pages/404/NotFound'
+import Appointments from './pages/appointments/Appointments'
 
 function App() {
     redirect("/home")
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/home/:practiceName" element={<Booking />}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/home/appointments" element={<Appointments/>}/>
             </Routes>
         </>
     )

@@ -4,23 +4,21 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "appointment")
 public class Appointment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @Column(name = "date_at")
-    private LocalDate dateAt;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "doctor_availability_slot_id", nullable = false)
+    private DoctorAvailabilitySlot das;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,11 +26,22 @@ public class Appointment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "doctor_id", nullable = false)
-    private Doctor doctor;
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "booked_at", insertable = false)
+    private Instant bookedAt;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "das=" + das +
+                ", user=" + user +
+                ", bookedAt=" + bookedAt +
+                ", id=" + id +
+                '}';
+    }
 }

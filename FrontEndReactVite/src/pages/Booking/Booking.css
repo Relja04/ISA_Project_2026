@@ -21,7 +21,7 @@
     justify-content: space-evenly;
     padding: 0 20px;
 }
-.appointment button{
+.appointment .book-btn{
     display: block;
     width: 40%;
     margin: 0 auto;
@@ -52,4 +52,45 @@
     position: relative;
     top: 20px;
     right: 150px;
+}
+
+.glide-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    animation: glideInOut 12s ease-in-out forwards;
+}
+.toastLink{
+    text-decoration: underline;
+    color: white;
+}
+.toastLink:visited{
+    color: white;
+}
+
+@keyframes glideInOut {
+    0% {
+        bottom: -100px;
+    }
+    5% {
+        bottom: 30px;
+    }
+    95% {
+        bottom: 30px;
+    }
+    100% {
+        bottom: -100px;
+    }
 }

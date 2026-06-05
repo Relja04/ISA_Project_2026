@@ -13,6 +13,14 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public Role() {}
 
     public int getId() {

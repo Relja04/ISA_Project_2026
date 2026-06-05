@@ -27,4 +27,12 @@ public class MedicalPractice {
     private Set<Doctor> doctors = new LinkedHashSet<>();
 
 
+    @Override
+    public String toString() {
+        return "MedicalPractice{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", doctors=" + doctors +
+                '}';
+    }
 }

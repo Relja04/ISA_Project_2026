@@ -1,4 +1,5 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { DoctorService } from "../../services/DoctorService";
 import { type DoctorResponseModel } from "../../model/DoctorResponseModel"
@@ -17,6 +18,10 @@ export default function Booking() {
     const [loading, setLoading] = useState(true);
     const [doctors, setDoctors] = useState<DoctorResponseModel[]>([])
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [message, setMessage] = useState('')
+    const navigate = useNavigate()
+
+    const [showToast, setShowToast] = useState(false)
 
     const findDoctor = async (practice: string) => {
         try {
@@ -84,7 +89,40 @@ export default function Booking() {
                                 <p className="practice">{practiceName}</p>
                                 <p className="time">Available: {new Date(doctor.start).toLocaleDateString("sr-rs", { year: 'numeric', month: '2-digit', day: "2-digit", hour: '2-digit', minute: '2-digit' })}</p>
                             </div>
-                            <button className="book-btn">Select Time</button>
+                            <button
+                                className="book-btn"
+                                onClick={async () => {
+                                    const jwt = localStorage.getItem("token")
+                                    if (jwt === null || typeof jwt === 'undefined') {
+                                        navigate("/login")
+                                        return
+                                    }
+                                    try {
+                                        const userId = Number(localStorage.getItem("userId"))
+
+                                        const response = await DoctorService.bookDoctor(doctor.appointmentId, userId)
+
+                                        if (response.status === 200) {
+                                            setMessage("Appointment booked")
+                                            setShowToast(true)
+                                            setTimeout(() => {
+                                                setShowToast(false)
+                                            }, 12000)
+                                        }
+
+                                        if (practiceName) {
+                                            findDoctor(practiceName)
+                                        }
+
+                                    } catch (error:any) {
+                                        if (error.response && error.response.status === 401) {
+                                            navigate("/login")
+                                            return
+                                        }
+                                        console.error("An unexpected booking error occurred:", error)
+                                    }
+                                }}
+                            >Select Time</button>
                         </div>
                     ))}
                     {doctors.length === 0 && (
@@ -92,6 +130,12 @@ export default function Booking() {
                     )}
                 </div>
             </div>
+            {showToast && (
+                <div className="glide-toast">
+                    {message}<br />
+                    <Link to="/home/appointments" className="toastLink">Check your appointments</Link>
+                </div>
+            )}
         </>
     );
 }

@@ -128,60 +128,6 @@
         filter: blur(0);
     }
 }
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-    overflow: hidden;
-}
-
-.detail {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    position: relative;
-    font-size: 17px;
-    animation: scaleIn 0.3s ease;
-    max-height: 40em;
-    overflow: scroll;
-}
-
-.detail header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: #999 1.5px solid;
-    padding-bottom: 5px;
-    align-items: center;
-}
-
-.detail .calendar {
-    background-color: #0080ff;
-    padding: 10px;
-    color: white;
-    font-family: "Robot Mono", monospace;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-}
-
-::-webkit-calendar-picker-indicator {
-    background-color: white;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
 table,
 tbody,
 thead {

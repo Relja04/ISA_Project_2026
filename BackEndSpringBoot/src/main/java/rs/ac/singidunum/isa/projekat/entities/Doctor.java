@@ -7,11 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
 @Getter
 @Setter
 @Entity
@@ -30,17 +25,20 @@ public class Doctor {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "practice_id")
     private MedicalPractice practice;
 
-    @OneToMany(mappedBy = "doctor")
-    private Set<Appointment> appointments = new LinkedHashSet<>();
+    public Doctor() {}
 
-    @OneToMany()
-    @JoinColumn(name = "doctor_id")
-    private List<DoctorAvailabilitySlot> availabilitySlots = new ArrayList<>();
-
-
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", practice=" + practice +
+                '}';
+    }
 }

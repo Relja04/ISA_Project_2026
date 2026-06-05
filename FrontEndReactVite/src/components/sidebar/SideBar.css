@@ -51,6 +51,7 @@
     cursor: pointer;
     text-decoration: none;
     display: block;
+    color: white;
 }
 .sideLink:hover, 
 .sideLink:visited:hover {
